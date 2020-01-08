@@ -1,1 +1,1 @@
-package cn.xinzhi.xsxs.pojo.solrpojo;
+ package cn.xinzhi.xsxs.pojo.solrpojo;

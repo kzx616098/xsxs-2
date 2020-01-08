@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class swaggerConfig {
 
     @Bean
-    public Docket docket(){
+    public Docket docket() {
 
 
         return new Docket(DocumentationType.SWAGGER_2)

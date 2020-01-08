@@ -8,5 +8,5 @@ import cn.xinzhi.xsxs.server.IService;
  * @create 2019-12-24 12:12
  */
 
-public class Serviceimpl implements IService {
+public class Serviceimpl implements IService  {
 }

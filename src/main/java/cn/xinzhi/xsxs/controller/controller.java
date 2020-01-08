@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class controller {
     @RequestMapping("/test")
-    public String testLog(){
+    public String testLog() {
         log.info("日志开始打印");
         System.out.println("输出");
         return null;
