@@ -38,8 +38,8 @@ spring:
       shutdown-timeout: 100ms
 mybatis:
   mapperLocations: classpath:mapper/*Mapper.xml
+  mapperLocations: classpath:mapper/*.xml
 
----
 spring:
   #MQ配置
   rabbitmq:
@@ -71,18 +71,17 @@ spring:
         retry:
           enabled: true
           max-attempts: 1
-##日志
-##logging.path=${user.dir}/logs
-#  logging.path=/root/log
-#  logging.file=${logging.path}/boot-demo.log
-#  logging.level.root=info
-#  logging.level.com.ldy = info
-#info  开始之前  trace 跟踪   debug 调试   warn  警告  error 错误
+
 logging:
   level:
     root: info trace debug warn error
-  file: D:/Java/Project/xsxs/springboot.log
+  file: D:/Java/Project/xsxs-2/springboot.log
 
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
 ---
 #solr
 spring:
