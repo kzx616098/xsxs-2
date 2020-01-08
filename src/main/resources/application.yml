@@ -37,9 +37,9 @@ spring:
         max-idle: 8
       shutdown-timeout: 100ms
 mybatis:
+  mapperLocations: classpath:mapper/*Mapper.xml
   mapperLocations: classpath:mapper/*.xml
 
----
 spring:
   #MQ配置
   rabbitmq:
