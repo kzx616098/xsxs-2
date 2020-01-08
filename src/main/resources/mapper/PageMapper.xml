@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xinzhi.xsxs.dao.PageDao">
+    <resultMap id="user" type="cn.xinzhi.xsxs.pojo.page.UserInfo" extends="img">
+        <id property="uiid" column="id"/>
+        <result property="uid" column="uid"/>
+        <result property="uname" column="uname"/>
+        <result property="upwd" column="upwd"/>
+        <result property="phone" column="p_phone"/>
+        <result property="idnumber" column="p_idnumber"/>
+        <result property="brithday" column="p_brithday"/>
+        <result property="cityid" column="p_cityid"/>
+        <result property="age" column="p_age"/>
+        <result property="sex" column="p_sex"/>
+    </resultMap>
+    <resultMap id="img" type="cn.xinzhi.xsxs.pojo.page.Picture">
+        <id property="piid" column="id"/>
+        <result property="img" column="pi_img"/>
+        <result property="background" column="pi_background"/>
+    </resultMap>
+    <resultMap id="zhanghu" type="cn.xinzhi.xsxs.pojo.page.Paccount" extends="user">
+        <id property="id" column="id"/>
+        <result property="backgrount" column="pa_backgrount"/>
+        <result property="pid" column="pa_pid"/>
+        <result property="certificate" column="pa_certificate"/>
+        <result property="intro" column="pa_intro"/>
+        <result property="tx" column="pa_tx"/>
+        <result property="userid" column="pa_userid"/>
+        <result property="accountstatus" column="pa_accountstatus"/>
+        <result property="devicecode" column="pa_devicecode"/>
+    </resultMap>
+    <resultMap id="screen" type="cn.xinzhi.xsxs.pojo.page.Screen" extends="zhanghu">
+        <id property="sid" column="id"/>
+        <result property="suid" column="s_uid"/>
+        <result property="filtercontent" column="s_filtercontent"/>
+    </resultMap>
+    <resultMap id="filtertype" type="cn.xinzhi.xsxs.pojo.page.Filtertype" extends="screen">
+        <id property="fid" column="id"/>
+        <result property="ftfilter" column="ft_filter"/>
+    </resultMap>
+    <resultMap id="filtercontent" type="cn.xinzhi.xsxs.pojo.page.Filtercontent" extends="filtertype">
+        <id property="fcid" column="id"/>
+        <result property="filter" column="kc_filter"/>
+        <result property="content" column="kc_content"/>
+    </resultMap>
+    <select id="getUserListen" resultType="cn.xinzhi.xsxs.pojo.page.Filtercontent" resultMap="filtercontent">
+        select uname,pi_background from paccount pa
+        LEFT JOIN picture pi on pa.pa_tx=pi.id
+        left JOIN userinfo ui on pa.pa_pid=ui.uid
+        left join screen sc on sc.s_uid=ui.uid
+        left join filtercontent fc on fc.kc_content=sc.s_filtercontent
+        left join filtertype ft on ft.ft_filter=fc.kc_filter
+        where sc.s_filtercontent=38
+    </select>
+
+    <select id="getUserSuggest" resultType="cn.xinzhi.xsxs.pojo.page.Filtercontent" resultMap="filtercontent">
+        select uname,pi_background from paccount pa
+        LEFT JOIN picture pi on pa.pa_tx=pi.id
+        left JOIN userinfo ui on pa.pa_pid=ui.uid
+        left join screen sc on sc.s_uid=ui.uid
+        left join filtercontent fc on fc.kc_content=sc.s_filtercontent
+        left join filtertype ft on ft.ft_filter=fc.kc_filter
+        where sc.s_filtercontent=40
+    </select>
+</mapper>
